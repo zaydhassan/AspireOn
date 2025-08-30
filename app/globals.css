@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+  /* Light mode base colors */
+  --background: 240 100% 99%; /* Very light lavender */
+  --foreground: 220 15% 15%;  /* Dark desaturated blue-gray */
+
+  --card: 0 0% 100%;
+  --card-foreground: 220 15% 15%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 15% 15%;
+
+  --primary: 260 80% 56%; /* Vibrant purple */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 90% 96%; /* Soft blue */
+  --secondary-foreground: 210 55% 25%;
+
+  --muted: 210 30% 97%; /* Light blue-gray */
+  --muted-foreground: 210 10% 50%;
+
+  --accent: 320 80% 90%; /* Light pink */
+  --accent-foreground: 320 60% 40%;
+  --destructive: 0 75% 65%; /* Strong red */
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 210 20% 90%;
+  --input: 210 20% 95%;
+  --ring: 260 80% 56%; /* same as primary */
+
+  --chart-1: 276 70% 60%; /* purple */
+  --chart-2: 183 70% 40%; /* teal */
+  --chart-3: 204 75% 45%; /* blue */
+  --chart-4: 45 90% 60%;  /* yellow-green */
+  --chart-5: 333 80% 55%; /* pink */
+
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 240 15% 10%; /* Dark indigo */
+  --foreground: 220 15% 90%;  /* Almost white */
+
+  --card: 240 15% 15%;
+  --card-foreground: 220 10% 85%;
+  --popover: 240 15% 15%;
+  --popover-foreground: 220 10% 85%;
+
+  --primary: 260 90% 70%;
+  --primary-foreground: 0 0% 10%;
+
+  --secondary: 210 60% 25%;
+  --secondary-foreground: 210 90% 95%;
+
+  --muted: 210 25% 15%;
+  --muted-foreground: 210 15% 65%;
+
+  --accent: 320 90% 65%;
+  --accent-foreground: 320 75% 85%;
+
+  --destructive: 0 80% 60%;
+  --destructive-foreground: 0 0% 20%;
+
+  --border: 240 15% 20%;
+  --input: 240 15% 18%;
+  --ring: 260 90% 70%;
+
+  --chart-1: 276 90% 70%;
+  --chart-2: 183 80% 50%;
+  --chart-3: 204 90% 60%;
+  --chart-4: 45 90% 50%;
+  --chart-5: 333 90% 65%;
+}
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))] transition-colors duration-500;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+
+
+@layer utilities {
+  .gradient {
+    @apply bg-gradient-to-r from-purple-400 via-pink-400 to-yellow-400;
+  }
+  .gradient-title {
+    @apply gradient font-extrabold tracking-tighter text-transparent bg-clip-text pb-2 pr-2;
+  }
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradientShift 4s ease infinite;
+  }
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
+
+
+.hero-image-wrapper {
+  perspective: 1100px;
+}
+
+.hero-image {
+  transform: rotateX(15deg) scale(1);
+  transition: transform 0.5s ease-out;
+  will-change: transform;
+  border-radius: var(--radius);
+}
+
+.hero-image.scrolled {
+  transform: rotateX(0deg) scale(1) translateY(40px);
+}
+
+.grid-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(
+      to right,
+      rgba(128 90 213 / 0.12) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(128 90 213 / 0.12) 1px,
+      transparent 1px
+    );
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.grid-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, transparent, rgba(55, 0, 125, 0.9));
+}}
